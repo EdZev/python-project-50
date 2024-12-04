@@ -13,4 +13,13 @@ gendiff:
 build:
 	poetry build
 
+test:
+	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov=gendiff
+
+lint:
+	poetry run flake8 gendiff
+
 .PHONY: gendiff
