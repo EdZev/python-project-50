@@ -1,8 +1,4 @@
-import json
-
-
-def get_data(path):
-    return json.load(open(path))
+from gendiff.parser import get_data
 
 
 def get_line(prefix, key, data):
@@ -26,4 +22,4 @@ def generate_diff(first_file, second_file):
             diff.append(get_line('-', key, data1[key]))
             diff.append(get_line('+', key, data2[key]))
     diff_str = '\n'.join(diff)
-    return '{\n' + f'{diff_str}' + '\n}'
+    return '{\n' + diff_str + '\n}'
