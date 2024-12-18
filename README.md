@@ -9,3 +9,6 @@
 
 #### Demo generate_diff yaml
 [![asciicast](https://asciinema.org/a/2I0d0mlIyV0AFWGoGz9Zy0n7e.svg)](https://asciinema.org/a/2I0d0mlIyV0AFWGoGz9Zy0n7e)
+
+### Demo generate diff "Stylish"
+[![asciicast](https://asciinema.org/a/LnFtDqXB0nanBKCrMSxwHHoni.svg)](https://asciinema.org/a/LnFtDqXB0nanBKCrMSxwHHoni)

@@ -12,7 +12,7 @@ def read_fixture(file_path):
 def test_json():
     file_path1 = os.path.join(FIXTURES_PATH, 'file1.json')
     file_path2 = os.path.join(FIXTURES_PATH, 'file2.json')
-    expected_path = os.path.join(FIXTURES_PATH, 'diff_json.txt')
+    expected_path = os.path.join(FIXTURES_PATH, 'diff.txt')
     expected = read_fixture(expected_path)
     result = generate_diff(file_path1, file_path2)
     assert result == expected
@@ -21,7 +21,7 @@ def test_json():
 def test_yaml():
     file_path1 = os.path.join(FIXTURES_PATH, 'file1.yaml')
     file_path2 = os.path.join(FIXTURES_PATH, 'file2.yml')
-    expected_path = os.path.join(FIXTURES_PATH, 'diff_json.txt')
+    expected_path = os.path.join(FIXTURES_PATH, 'diff.txt')
     expected = read_fixture(expected_path)
     result = generate_diff(file_path1, file_path2)
     assert result == expected
@@ -30,7 +30,7 @@ def test_yaml():
 def test_yaml_json():
     file_path1 = os.path.join(FIXTURES_PATH, 'file1.yaml')
     file_path2 = os.path.join(FIXTURES_PATH, 'file2.json')
-    expected_path = os.path.join(FIXTURES_PATH, 'diff_json.txt')
+    expected_path = os.path.join(FIXTURES_PATH, 'diff.txt')
     expected = read_fixture(expected_path)
     result = generate_diff(file_path1, file_path2)
     assert result == expected

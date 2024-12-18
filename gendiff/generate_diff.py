@@ -1,25 +1,46 @@
 from gendiff.parser import get_data
+from gendiff.formatters.stylish import stylish
+
+FORMATTERS = {
+    'stylish': stylish,
+}
 
 
-def get_line(prefix, key, data):
-    return f'  {prefix} {key}: {data}'
-
-
-def generate_diff(first_file, second_file):
-    data1 = get_data(first_file)
-    data2 = get_data(second_file)
-    keys = list({**data1, **data2}.keys())
-    keys.sort()
-    diff = []
+def get_diff(data1, data2):
+    keys = sorted(list({**data1, **data2}.keys()))
+    diff = {}
     for key in keys:
         if key not in data1:
-            diff.append(get_line('+', key, data2[key]))
+            diff[key] = {
+                'status': 'added',
+                'data': data2[key],
+            }
         elif key not in data2:
-            diff.append(get_line('-', key, data1[key]))
+            diff[key] = {
+                'status': 'deleted',
+                'data': data1[key]
+            }
+        elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+            diff[key] = {
+                'status': 'not changed',
+                'data': get_diff(data1[key], data2[key])
+            }
         elif data1[key] == data2[key]:
-            diff.append(get_line(' ', key, data2[key]))
+            diff[key] = {
+                'status': 'not changed',
+                'data': data2[key]
+            }
         else:
-            diff.append(get_line('-', key, data1[key]))
-            diff.append(get_line('+', key, data2[key]))
-    diff_str = '\n'.join(diff)
-    return '{\n' + diff_str + '\n}'
+            diff[key] = {
+                'status': 'changed',
+                'data': data2[key],
+                'old_data': data1[key]
+            }
+    return diff
+
+
+def generate_diff(first_file, second_file, format_name='stylish'):
+    data1 = get_data(first_file)
+    data2 = get_data(second_file)
+    diff = get_diff(data1, data2)
+    return FORMATTERS[format_name](diff)
