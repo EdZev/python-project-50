@@ -5,7 +5,8 @@ def get_prepared_value(value):
         return 'null'
     if isinstance(value, dict):
         return '[complex value]'
-    return f"'{value}'"
+    value = value if isinstance(value, int) else f"'{value}'"
+    return value
 
 
 def build_str(line):

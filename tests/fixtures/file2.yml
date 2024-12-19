@@ -9,7 +9,7 @@ common:
     key: value
     ops: vops
     doge:
-      wow: so much
+      wow: 0
 group1:
   foo: bar
   baz: bars

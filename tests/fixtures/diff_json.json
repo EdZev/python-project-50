@@ -38,7 +38,7 @@
                             "wow": {
                                 "status": "changed",
                                 "old_value": "",
-                                "new_value": "so much"
+                                "new_value": 0
                             }
                         }
                     },
