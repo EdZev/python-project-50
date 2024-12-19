@@ -1,11 +1,13 @@
 from gendiff.parser import get_data
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
+from gendiff.formatters.json_formatter import json_formatter
 
 
 FORMATTERS = {
     'stylish': stylish,
     'plain': plain,
+    'json': json_formatter
 }
 
 
@@ -16,28 +18,28 @@ def get_diff(data1, data2):
         if key not in data1:
             diff[key] = {
                 'status': 'added',
-                'data': data2[key],
+                'value': data2[key],
             }
         elif key not in data2:
             diff[key] = {
                 'status': 'removed',
-                'data': data1[key]
+                'value': data1[key]
             }
         elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
             diff[key] = {
-                'status': 'not changed',
-                'data': get_diff(data1[key], data2[key])
+                'status': 'unchanged',
+                'value': get_diff(data1[key], data2[key])
             }
         elif data1[key] == data2[key]:
             diff[key] = {
-                'status': 'not changed',
-                'data': data2[key]
+                'status': 'unchanged',
+                'value': data2[key]
             }
         else:
             diff[key] = {
                 'status': 'changed',
-                'data': data2[key],
-                'old_data': data1[key]
+                'old_value': data1[key],
+                'new_value': data2[key]
             }
     return diff
 

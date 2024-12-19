@@ -15,3 +15,6 @@
 
 ### Demo generate diff "Plain"
 [![asciicast](https://asciinema.org/a/bbuVIwkwn7Y8HcCro8D5nCNUD.svg)](https://asciinema.org/a/bbuVIwkwn7Y8HcCro8D5nCNUD)
+
+### Demo generate diff "Json"
+[![asciicast](https://asciinema.org/a/O1YJlUUKaO0jh74ROnwEqEwIO.svg)](https://asciinema.org/a/O1YJlUUKaO0jh74ROnwEqEwIO)

@@ -9,31 +9,37 @@ def get_prepared_value(value):
 
 
 def build_str(line):
-    parents = '.'.join(line['parents'])
-    value = get_prepared_value(line['value'])
-
+    path = '.'.join(line['parents'])
     if line['status'] == 'added':
-        return f"Property '{parents}' was added with value: {value}"
+        value = get_prepared_value(line['value'])
+        return f"Property '{path}' was added with value: {value}"
 
     if line['status'] == 'removed':
-        return f"Property '{parents}' was removed"
+        value = get_prepared_value(line['value'])
+        return f"Property '{path}' was removed"
 
     old_value = get_prepared_value(line['old_value'])
-    return f"Property '{parents}' was updated. From {old_value} to {value}"
+    new_value = get_prepared_value(line['new_value'])
+    return f"Property '{path}' was updated. From {old_value} to {new_value}"
 
 
 def get_modified_lines(key, value, parents):
     if not isinstance(value, dict) and 'status' not in value:
         return
-    if not value['status'] == 'not changed':
-        old_value = value['old_data'] if 'old_data' in value else ''
+    if value['status'] == 'changed':
         return {
             'status': value['status'],
-            'value': value['data'],
-            'old_value': old_value,
+            'old_value': value['old_value'],
+            'new_value': value['new_value'],
             'parents': [*parents, key],
         }
-    return build_line(value['data'], [*parents, key])
+    if not value['status'] == 'unchanged':
+        return {
+            'status': value['status'],
+            'value': value['value'],
+            'parents': [*parents, key],
+        }
+    return build_line(value['value'], [*parents, key])
 
 
 def build_line(diff, parents=[]):
