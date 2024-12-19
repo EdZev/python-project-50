@@ -12,3 +12,6 @@
 
 ### Demo generate diff "Stylish"
 [![asciicast](https://asciinema.org/a/LnFtDqXB0nanBKCrMSxwHHoni.svg)](https://asciinema.org/a/LnFtDqXB0nanBKCrMSxwHHoni)
+
+### Demo generate diff "Plain"
+[![asciicast](https://asciinema.org/a/bbuVIwkwn7Y8HcCro8D5nCNUD.svg)](https://asciinema.org/a/bbuVIwkwn7Y8HcCro8D5nCNUD)

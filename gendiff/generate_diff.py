@@ -1,8 +1,11 @@
 from gendiff.parser import get_data
 from gendiff.formatters.stylish import stylish
+from gendiff.formatters.plain import plain
+
 
 FORMATTERS = {
     'stylish': stylish,
+    'plain': plain,
 }
 
 
@@ -17,7 +20,7 @@ def get_diff(data1, data2):
             }
         elif key not in data2:
             diff[key] = {
-                'status': 'deleted',
+                'status': 'removed',
                 'data': data1[key]
             }
         elif isinstance(data1[key], dict) and isinstance(data2[key], dict):

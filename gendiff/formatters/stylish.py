@@ -5,7 +5,7 @@ def get_indent(depth):
 def get_prefix(status='not changed'):
     statuses = {
         'added': '+ ',
-        'deleted': '- ',
+        'removed': '- ',
         'changed': ['- ', '+ '],
         'not changed': '  ',
     }

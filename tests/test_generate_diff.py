@@ -34,3 +34,12 @@ def test_yaml_json():
     expected = read_fixture(expected_path)
     result = generate_diff(file_path1, file_path2)
     assert result == expected
+
+
+def test_plain():
+    file_path1 = os.path.join(FIXTURES_PATH, 'file1.yaml')
+    file_path2 = os.path.join(FIXTURES_PATH, 'file2.json')
+    expected_path = os.path.join(FIXTURES_PATH, 'diff_plain.txt')
+    expected = read_fixture(expected_path)
+    result = generate_diff(file_path1, file_path2, 'plain')
+    assert result == expected
